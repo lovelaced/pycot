@@ -83,6 +83,7 @@ def get_matching(resource):
 
 
 def create_submitfiles(job_name, all, directory = directory):
+    out_dir = directory + "outfiles/"
     directory = directory + "/submitfiles/"
 
     if not os.path.exists(directory):
@@ -102,10 +103,10 @@ def create_submitfiles(job_name, all, directory = directory):
                 submit_file.write(
                     "job = " + job_name + "\n"
                     "universe = vanilla\n"
-                    "executable = jobs/$(job)\n"
+                    "executable = $(job)\n"
                     "arguments = " + job_args + "\n"
 
-                    "initialdir = " + directory + "outfiles/\n"
+                    "initialdir = " + out_dir + "\n"
 
                     "log = log\n"
 
@@ -118,7 +119,7 @@ def create_submitfiles(job_name, all, directory = directory):
                     "+WantFlocking = true\n"
                     "+WantRHEL6 = true\n"
                     "requirements = IS_GLIDEIN" + "\n"
-                    "queue" + job_num + "\n")
+                    "queue " + job_num + "\n")
                 submit_file.close()
                 print submit_file.name + " created."
         except OSError:
@@ -133,31 +134,31 @@ def create_submitfiles(job_name, all, directory = directory):
                     submit_list.append(filename)
                     try:
                         with open(directory + filename, 'w+') as submit_file:
-                                submit_file.write(
-                                    "job = " + job_name + "\n"
-                                    "universe = vanilla\n"
-                                    "executable = jobs/$(job)\n"
-                                    "arguments = 10\n"
+                            submit_file.write(
+                                "job = " + job_name + "\n"
+                                "universe = vanilla\n"
+                                "executable = $(job)\n"
+                                "arguments = " + job_args + "\n"
 
-                                    "log = log\n"
+                                "log = log\n"
 
-                                    "should_transfer_files = YES\n"
-                                    "when_to_transfer_output = ON_EXIT\n"
-                                    "output = out." + resource_name +"\n"
-                                    "error = err." + resource_name + "\n"
+                                "should_transfer_files = YES\n"
+                                "when_to_transfer_output = ON_EXIT\n"
+                                "output = out." + resource_name +"\n"
+                                "error = err." + resource_name + "\n"
 
-                                    "request_cpus = 1\n"
-                                    "request_disk = 100000\n"
-                                    "request_memory = 10\n"
+                                "request_cpus = 1\n"
+                                "request_disk = 100000\n"
+                                "request_memory = 10\n"
 
-                                    "+WantGlidein = true\n"
-                                    "+WantFlocking = true\n"
-                                    '+osg_site_whitelist="' + resource_name + "\n"
-                                    'requirements = Glidein_SITE =?= "' + resource_name + "\n"
-                                    '+WantRHEL6 = true\n'
-                                    "queue\n")
-                                submit_file.close()
-                                print submit_file.name + " created."
+                                "+WantGlidein = true\n"
+                                "+WantFlocking = true\n"
+                                '+osg_site_whitelist="' + resource_name + "\n"
+                                'requirements = Glidein_SITE =?= "' + resource_name + "\n"
+                                '+WantRHEL6 = true\n'
+                                "queue\n")
+                            submit_file.close()
+                            print submit_file.name + " created."
                     except OSError:
                         print "Could not create submit file for " + filename
 
@@ -165,7 +166,7 @@ def create_submitfiles(job_name, all, directory = directory):
 def submit_jobs(submit_list, job_num, directory = directory):
     for subfile in submit_list:
         print "Submitting " + subfile + "...\n"
-        #print subprocess.check_output(["condor_submit", directory + "/submitfiles/" + subfile])
+        print subprocess.check_output(["condor_submit", directory + "/submitfiles/" + subfile])
         print subfile + " submitted."
 
 
