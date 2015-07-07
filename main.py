@@ -49,7 +49,7 @@ elif all == "2":
 # current_condor = subprocess.check_output(["cat", directory + "/sites.txt"]).splitlines()
 # glideins = subprocess.check_output(["cat", directory + "/test.txt"])
 # glideins = glideins.splitlines()
-script_path = directory + "/./condorglideins.sh"
+script_path = directory + "/./jobs/condorglideins.sh"
 glideins = subprocess.check_output([script_path])
 glideins = glideins.splitlines()
 cmd = """condor_status -pool glidein2.chtc.wisc.edu -af Glidein_ResourceName Glidein_Site"""
@@ -61,7 +61,7 @@ def get_sites():
         flags = args[1:]
     else:
         flags = ["cpu"]
-    script_path = directory + "/./condorglideins.sh"
+    script_path = directory + "/./jobs/condorglideins.sh"
     glideins = subprocess.check_output([script_path])
 #    if "oasis" in flags:
  #       glideins = subprocess.check_output(["condor_status", "-p", "glidein.grid.iu.edu", "-any", "-const", "'(HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE)'", "-af", "name"])
@@ -164,7 +164,7 @@ def create_submitfiles(job_name, directory = directory, all = 1):
 def submit_jobs(submit_list, job_num, directory = directory):
     for subfile in submit_list:
         print "Submitting " + subfile + "...\n"
-        print subprocess.check_output(["condor_submit", directory + "/submitfiles/" + subfile])
+        #print subprocess.check_output(["condor_submit", directory + "/submitfiles/" + subfile])
         print subfile + " submitted."
 
 
