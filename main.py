@@ -92,7 +92,7 @@ def create_submitfiles(job_name, all, directory = directory):
         except OSError:
             print "Could not create " + directory
 
-    if all:
+    if all == 1:
         filename = "test_eviction.sub"
         output = "test_eviction.$(Cluster).$(Process).out"
         error = "test_eviction.$(Cluster).$(Process).err"
@@ -111,55 +111,55 @@ def create_submitfiles(job_name, all, directory = directory):
 
                     "should_transfer_files = YES\n"
                     "when_to_transfer_output = ON_EXIT\n"
-                    "output = " + output +"\n"
+                    "output = " + output + "\n"
                     "error = " + error + "\n"
 
                     "+WantGlidein = true\n"
-                    "+WantFlocking = true"
-                    "+WantRHEL6 = true"
+                    "+WantFlocking = true\n"
+                    "+WantRHEL6 = true\n"
                     "requirements = IS_GLIDEIN" + "\n"
                     "queue" + job_num)
                 submit_file.close()
                 print submit_file.name + " created."
         except OSError:
             print "Could not create submit file for " + filename
+    if all == 2:
+        for resource in glideins:
+            resource = resource.split("@")
+            resource_name = get_matching(resource[0])
+            if resource_name is not None and resource_name is not "":
+                filename = resource_name + ".sub"
+                if filename not in submit_list:
+                    submit_list.append(filename)
+                    try:
+                        with open(directory + filename, 'w+') as submit_file:
+                                submit_file.write(
+                                    "job = " + job_name + "\n"
+                                    "universe = vanilla\n"
+                                    "executable = jobs/$(job)\n"
+                                    "arguments = 10\n"
 
-    for resource in glideins:
-        resource = resource.split("@")
-        resource_name = get_matching(resource[0])
-        if resource_name is not None and resource_name is not "":
-            filename = resource_name + ".sub"
-            if filename not in submit_list:
-                submit_list.append(filename)
-                try:
-                    with open(directory + filename, 'w+') as submit_file:
-                            submit_file.write(
-                                "job = " + job_name + "\n"
-                                "universe = vanilla\n"
-                                "executable = jobs/$(job)\n"
-                                "arguments = 10\n"
+                                    "log = log\n"
 
-                                "log = log\n"
+                                    "should_transfer_files = YES\n"
+                                    "when_to_transfer_output = ON_EXIT\n"
+                                    "output = out." + resource_name +"\n"
+                                    "error = err." + resource_name + "\n"
 
-                                "should_transfer_files = YES\n"
-                                "when_to_transfer_output = ON_EXIT\n"
-                                "output = out." + resource_name +"\n"
-                                "error = err." + resource_name + "\n"
+                                    "request_cpus = 1\n"
+                                    "request_disk = 100000\n"
+                                    "request_memory = 10\n"
 
-                                "request_cpus = 1\n"
-                                "request_disk = 100000\n"
-                                "request_memory = 10\n"
-
-                                "+WantGlidein = true\n"
-                                "+WantFlocking = true"
-                                '+osg_site_whitelist="' + resource_name + '"\n'
-                                'requirements = Glidein_SITE =?= "' + resource_name + '"\n'
-                                '+WantRHEL6 = true\n'
-                                'queue')
-                            submit_file.close()
-                            print submit_file.name + " created."
-                except OSError:
-                    print "Could not create submit file for " + filename
+                                    "+WantGlidein = true\n"
+                                    "+WantFlocking = true\n"
+                                    '+osg_site_whitelist="' + resource_name + "\n"
+                                    'requirements = Glidein_SITE =?= "' + resource_name + "\n"
+                                    '+WantRHEL6 = true\n'
+                                    'queue')
+                                submit_file.close()
+                                print submit_file.name + " created."
+                    except OSError:
+                        print "Could not create submit file for " + filename
 
 
 def submit_jobs(submit_list, job_num, directory = directory):
@@ -183,7 +183,7 @@ def get_cpu_num(submit_list):
             print filename + " does not exist yet."
 
 get_sites()
-current_condor=set(current_condor.splitlines())
+current_condor = set(current_condor.splitlines())
 glideins = set(glideins)
 create_submitfiles(job_name, all)
 submit_jobs(submit_list, job_num)
