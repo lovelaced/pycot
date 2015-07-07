@@ -21,6 +21,29 @@ if "check_output" not in dir(subprocess):  # duck punch it in!
 
 args = sys.argv
 directory = sys.path[0]
+
+if len(args) < 4:
+    print "Usage: main.py job_name [for all sites 1, for each site 2] [number of jobs to submit] job_args"
+    exit(1)
+
+job_name = args[1]
+
+all = sys.argv[2]
+
+job_num = args[3]
+
+if args[4]:
+    job_args = args[4]
+
+if all == "1":
+    all = True
+    job_name = directory + "/sleep.sh"
+elif all == "2":
+    all = False
+    job_name = directory + "/hello_world.sh"
+
+
+
 #print directory
 
 # current_condor = subprocess.check_output(["cat", directory + "/sites.txt"]).splitlines()
@@ -49,16 +72,16 @@ def get_sites():
 
 def get_matching(resource):
     if resource is None:
-	pass
+        pass
     for site in current_condor:
         site = site.split(" ")
         if len(site) < 2:
-		continue
-	if site[1].lower() in resource.lower():
+            continue
+        if site[1].lower() in resource.lower():
             return site[1]
 
 
-def create_submitfiles(job_name, directory = directory):
+def create_submitfiles(job_name, directory = directory, all = 1):
     directory = directory + "/submitfiles/"
 
     if not os.path.exists(directory):
@@ -67,6 +90,38 @@ def create_submitfiles(job_name, directory = directory):
             print directory + " created."
         except OSError:
             print "Could not create " + directory
+
+    if all:
+        filename = "test_eviction.sub"
+        output = "test_eviction.$(Cluster).$(Process).out"
+        error = "test_eviction.$(Cluster).$(Process).err"
+        submit_list.append(filename)
+        try:
+            with open(directory + filename, 'w+') as submit_file:
+                submit_file.write(
+                    "job = " + job_name + "\n"
+                    "universe = vanilla\n"
+                    "executable = $(job)\n"
+                    "arguments = " + job_args + "\n"
+
+                    "initialdir = " + directory + "/outfiles/"
+
+                    "log = log\n"
+
+                    "should_transfer_files = YES\n"
+                    "when_to_transfer_output = ON_EXIT\n"
+                    "output = " + output +"\n"
+                    "error = " + error + "\n"
+
+                    "+WantGlidein = true\n"
+                    "+WantFlocking = true"
+                    "+WantRHEL6 = true"
+                    "requirements = IS_GLIDEIN" + "\n"
+                    "queue" + job_num)
+                submit_file.close()
+                print submit_file.name + " created."
+        except OSError:
+            print "Could not create submit file for " + filename
 
     for resource in glideins:
         resource = resource.split("@")
@@ -94,8 +149,8 @@ def create_submitfiles(job_name, directory = directory):
                                 "request_disk = 100000\n"
                                 "request_memory = 10\n"
 
-                                "+WantGlidein3 = true\n"
-
+                                "+WantGlidein = true\n"
+                                "+WantFlocking = true"
                                 '+osg_site_whitelist="' + resource_name + '"\n'
                                 'requirements = Glidein_SITE =?= "' + resource_name + '"\n'
                                 '+WantRHEL6 = true\n'
@@ -106,7 +161,7 @@ def create_submitfiles(job_name, directory = directory):
                     print "Could not create submit file for " + filename
 
 
-def submit_jobs(submit_list, directory = directory):
+def submit_jobs(submit_list, job_num, directory = directory):
     for subfile in submit_list:
         print "Submitting " + subfile + "...\n"
         print subprocess.check_output(["condor_submit", directory + "/submitfiles/" + subfile])
@@ -130,7 +185,7 @@ get_sites()
 current_condor=set(current_condor.splitlines())
 glideins = set(glideins)
 create_submitfiles(directory + "/hello_world.sh")
-submit_jobs(submit_list)
+submit_jobs(submit_list, job_num)
 # print "Waiting 1 minute to grab job stats."
 # time.sleep(60)
 # get_cpu_num(submit_list)
