@@ -37,11 +37,11 @@ if args[4]:
 
 if all == "1":
     all = True
-    job_name = directory + "/sleep.sh"
+    job_name = directory + "jobs/" + job_name
 
 elif all == "2":
     all = False
-    job_name = directory + "/hello_world.sh"
+    job_name = directory + "jobs/" + job_name
 
 
 
@@ -105,7 +105,7 @@ def create_submitfiles(job_name, all, directory = directory):
                     "executable = jobs/$(job)\n"
                     "arguments = " + job_args + "\n"
 
-                    "initialdir = " + directory + "/outfiles/"
+                    "initialdir = " + directory + "outfiles/\n"
 
                     "log = log\n"
 
@@ -118,7 +118,7 @@ def create_submitfiles(job_name, all, directory = directory):
                     "+WantFlocking = true\n"
                     "+WantRHEL6 = true\n"
                     "requirements = IS_GLIDEIN" + "\n"
-                    "queue" + job_num)
+                    "queue" + job_num + "\n")
                 submit_file.close()
                 print submit_file.name + " created."
         except OSError:
@@ -155,7 +155,7 @@ def create_submitfiles(job_name, all, directory = directory):
                                     '+osg_site_whitelist="' + resource_name + "\n"
                                     'requirements = Glidein_SITE =?= "' + resource_name + "\n"
                                     '+WantRHEL6 = true\n'
-                                    'queue')
+                                    "queue\n")
                                 submit_file.close()
                                 print submit_file.name + " created."
                     except OSError:
