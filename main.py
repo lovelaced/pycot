@@ -83,7 +83,7 @@ def get_matching(resource):
 
 
 def create_submitfiles(job_name, all, directory = directory):
-    out_dir = directory + "outfiles/"
+    out_dir = directory + "/outfiles/"
     directory = directory + "/submitfiles/"
 
     if not os.path.exists(directory):
@@ -163,7 +163,7 @@ def create_submitfiles(job_name, all, directory = directory):
                         print "Could not create submit file for " + filename
 
 
-def submit_jobs(submit_list, job_num, directory = directory):
+def submit_jobs(submit_list, directory = directory):
     for subfile in submit_list:
         print "Submitting " + subfile + "...\n"
         print subprocess.check_output(["condor_submit", directory + "/submitfiles/" + subfile])
@@ -187,7 +187,7 @@ get_sites()
 current_condor = set(current_condor.splitlines())
 glideins = set(glideins)
 create_submitfiles(job_name, all)
-submit_jobs(submit_list, job_num)
+submit_jobs(submit_list)
 # print "Waiting 1 minute to grab job stats."
 # time.sleep(60)
 # get_cpu_num(submit_list)
