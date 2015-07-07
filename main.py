@@ -101,7 +101,7 @@ def create_submitfiles(job_name, directory = directory, all = 1):
                 submit_file.write(
                     "job = " + job_name + "\n"
                     "universe = vanilla\n"
-                    "executable = $(job)\n"
+                    "executable = jobs/$(job)\n"
                     "arguments = " + job_args + "\n"
 
                     "initialdir = " + directory + "/outfiles/"
@@ -135,7 +135,7 @@ def create_submitfiles(job_name, directory = directory, all = 1):
                             submit_file.write(
                                 "job = " + job_name + "\n"
                                 "universe = vanilla\n"
-                                "executable = $(job)\n"
+                                "executable = jobs/$(job)\n"
                                 "arguments = 10\n"
 
                                 "log = log\n"
