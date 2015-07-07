@@ -37,11 +37,11 @@ if args[4]:
 
 if all == "1":
     all = True
-    job_name = directory + "jobs/" + job_name
+    job_name = directory + "/jobs/" + job_name
 
 elif all == "2":
     all = False
-    job_name = directory + "jobs/" + job_name
+    job_name = directory + "/jobs/" + job_name
 
 
 
