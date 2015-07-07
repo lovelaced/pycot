@@ -38,6 +38,7 @@ if args[4]:
 if all == "1":
     all = True
     job_name = directory + "/sleep.sh"
+
 elif all == "2":
     all = False
     job_name = directory + "/hello_world.sh"
@@ -81,7 +82,7 @@ def get_matching(resource):
             return site[1]
 
 
-def create_submitfiles(job_name, directory = directory, all = 1):
+def create_submitfiles(job_name, all, directory = directory):
     directory = directory + "/submitfiles/"
 
     if not os.path.exists(directory):
@@ -184,7 +185,7 @@ def get_cpu_num(submit_list):
 get_sites()
 current_condor=set(current_condor.splitlines())
 glideins = set(glideins)
-create_submitfiles(directory + "/hello_world.sh")
+create_submitfiles(job_name, all)
 submit_jobs(submit_list, job_num)
 # print "Waiting 1 minute to grab job stats."
 # time.sleep(60)
