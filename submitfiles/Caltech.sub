@@ -1,0 +1,17 @@
+job = /home/egrasmick/glidein_tester/hello_world.sh
+universe = vanilla
+executable = $(job)
+arguments = 10
+log = log
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+output = out.Caltech
+error = err.Caltech
+request_cpus = 1
+request_disk = 100000
+request_memory = 10
++WantGlidein3 = true
++osg_site_whitelist="Caltech"
+requirements = Glidein_SITE =?= "Caltech"
++WantRHEL6 = true
+queue
