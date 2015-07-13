@@ -108,7 +108,7 @@ def create_submitfiles(job_name, all, directory = directory):
 
                     "initialdir = " + out_dir + "\n"
 
-                    "log = log\n"
+                    "log = test_eviction.$(Cluster).$(Process).log\n"
 
                     "should_transfer_files = YES\n"
                     "when_to_transfer_output = ON_EXIT\n"
