@@ -157,8 +157,8 @@ def create_submitfiles(job_name, all, directory = directory):
 
                                 "+WantGlidein = true\n"
                                 "+WantFlocking = true\n"
-                                '+osg_site_whitelist="' + resource_name + "\n"
-                                'requirements = Glidein_SITE =?= "' + resource_name + "\n"
+                                '+osg_site_whitelist="' + resource_name + '"\n'
+                                'requirements = Glidein_SITE =?= "' + resource_name + '"\n'
                                 '+WantRHEL6 = true\n'
                                 "queue " + job_num + "\n")
                             submit_file.close()
