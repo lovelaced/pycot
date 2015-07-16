@@ -131,7 +131,6 @@ def create_submitfiles(job_name, all, directory = directory):
         for resource in glideins:
             resource = resource.split("@")
             resource_name = get_matching(resource[0])
-            print resource_name
             if resource_name is not None and resource_name is not "":
                 filename = resource_name + ".sub"
                 if filename not in submit_list:

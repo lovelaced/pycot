@@ -31,8 +31,8 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.019586507">
-              <caret line="137" column="48" selection-start-line="137" selection-start-column="48" selection-end-line="137" selection-end-column="48" />
+            <state vertical-scroll-proportion="0.07834603">
+              <caret line="133" column="0" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
               <folding>
                 <element signature="e#30#44#0" expanded="true" />
               </folding>
@@ -551,7 +551,13 @@
       <option name="project" value="LOCAL" />
       <updated>1437085201703</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="added &quot;&quot;'s">
+      <created>1437085390149</created>
+      <option name="number" value="00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1437085390149</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -602,7 +608,8 @@
     <MESSAGE value="fixed ifs" />
     <MESSAGE value="fixed bools" />
     <MESSAGE value="added test_eviction.sh job" />
-    <option name="LAST_COMMIT_MESSAGE" value="added test_eviction.sh job" />
+    <MESSAGE value="added &quot;&quot;'s" />
+    <option name="LAST_COMMIT_MESSAGE" value="added &quot;&quot;'s" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -814,8 +821,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.019586507">
-          <caret line="137" column="48" selection-start-line="137" selection-start-column="48" selection-end-line="137" selection-end-column="48" />
+        <state vertical-scroll-proportion="0.07834603">
+          <caret line="133" column="0" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
           <folding>
             <element signature="e#30#44#0" expanded="true" />
           </folding>
