@@ -96,7 +96,7 @@ def create_submitfiles(job_name, all, directory = directory):
         except OSError:
             print "Could not create " + directory
 
-    if not all:
+    if all:
         filename = "test_eviction.sub"
         output = "test_eviction.$(Cluster).$(Process).out"
         error = "test_eviction.$(Cluster).$(Process).err"
@@ -127,7 +127,7 @@ def create_submitfiles(job_name, all, directory = directory):
                 print submit_file.name + " created."
         except OSError:
             print "Could not create submit file for " + filename
-    if all:
+    else:
         for resource in glideins:
             resource = resource.split("@")
             resource_name = get_matching(resource[0])
