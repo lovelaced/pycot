@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="45389ae1-0b34-4a3a-8077-5b29eecf1f8e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jobs/test_eviction.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="condor_tester.iws" />
@@ -28,14 +28,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.960827">
+            <state vertical-scroll-proportion="0.0">
               <caret line="160" column="8" selection-start-line="160" selection-start-column="8" selection-end-line="160" selection-end-column="8" />
               <folding>
                 <element signature="e#30#44#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_eviction.sh" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/jobs/test_eviction.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.05875952">
+              <caret line="3" column="49" selection-start-line="3" selection-start-column="49" selection-end-line="3" selection-end-column="49" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -94,6 +104,7 @@
         <option value="$PROJECT_DIR$/parse_log.py" />
         <option value="$PROJECT_DIR$/walltime.py" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/jobs/test_eviction.sh" />
       </list>
     </option>
   </component>
@@ -528,7 +539,13 @@
       <option name="project" value="LOCAL" />
       <updated>1437084743860</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="fixed bools">
+      <created>1437084894356</created>
+      <option name="number" value="00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1437084894356</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -577,7 +594,8 @@
     <MESSAGE value="changed log filenames" />
     <MESSAGE value="added walltime calc" />
     <MESSAGE value="fixed ifs" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed ifs" />
+    <MESSAGE value="fixed bools" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed bools" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -781,11 +799,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.960827">
+        <state vertical-scroll-proportion="0.0">
           <caret line="160" column="8" selection-start-line="160" selection-start-column="8" selection-end-line="160" selection-end-column="8" />
           <folding>
             <element signature="e#30#44#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jobs/test_eviction.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.05875952">
+          <caret line="3" column="49" selection-start-line="3" selection-start-column="49" selection-end-line="3" selection-end-column="49" />
+          <folding />
         </state>
       </provider>
     </entry>
