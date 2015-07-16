@@ -3,6 +3,7 @@ __author__ = 'Erin Grasmick'
 import os.path
 import sys
 import subprocess
+import random
 
 if "check_output" not in dir(subprocess):  # duck punch it in!
     def f(*popenargs, **kwargs):
@@ -23,7 +24,7 @@ args = sys.argv
 directory = sys.path[0]
 
 if len(args) < 4:
-    print "Usage: main.py job_name [for all sites 1, for each site 2] [number of jobs to submit] job_args"
+    print "Usage: main.py [job_name] [for all sites: 1; for each specific site: 2] [number of jobs to submit] [job_args]"
     exit(1)
 
 job_name = args[1]
@@ -38,6 +39,8 @@ if args[4]:
 if all == "1":
     all = True
     job_name = directory + "/jobs/" + job_name
+    log_no = random.randint(0, 100)
+    print "The logfile for this run is named " + str(log_no) + ".log."
 
 elif all == "2":
     all = False
@@ -108,7 +111,7 @@ def create_submitfiles(job_name, all, directory = directory):
 
                     "initialdir = " + out_dir + "\n"
 
-                    "log = test_eviction.$(Cluster).$(Process).log\n"
+                    "log = " + str(log_no) + ".log\n"
 
                     "should_transfer_files = YES\n"
                     "when_to_transfer_output = ON_EXIT\n"
@@ -140,7 +143,7 @@ def create_submitfiles(job_name, all, directory = directory):
                                 "executable = $(job)\n"
                                 "arguments = " + job_args + "\n"
 
-                                "log = log\n"
+                                "log = " + resource_name + ".log\n"
 
                                 "should_transfer_files = YES\n"
                                 "when_to_transfer_output = ON_EXIT\n"
@@ -156,7 +159,7 @@ def create_submitfiles(job_name, all, directory = directory):
                                 '+osg_site_whitelist="' + resource_name + "\n"
                                 'requirements = Glidein_SITE =?= "' + resource_name + "\n"
                                 '+WantRHEL6 = true\n'
-                                "queue\n")
+                                "queue " + job_num + "\n")
                             submit_file.close()
                             print submit_file.name + " created."
                     except OSError:

@@ -51,16 +51,19 @@ submission_time = 0
 eviction_time = 0
 for job_num in job_numlist:
     for i in range(len(job_info[job_num])):
+        print job_info[job_num][i]
         if "executing" in job_info[job_num][i]:
+            print job_info[job_num][i]
             submission_date = job_info[job_num][i].split(" ")[2] + "/" + str(datetime.date.today().year) + " " + job_info[job_num][i].split(" ")[3]
             submission_time = time.strptime(submission_date, '%m/%d/%Y %H:%M:%S')
         elif "evicted" in job_info[job_num][i]:
+            print job_info[job_num][i]
             eviction_date = job_info[job_num][i].split(" ")[2] + "/" + str(datetime.date.today().year) + " " + job_info[job_num][i].split(" ")[3]
             eviction_time = time.strptime(eviction_date, '%m/%d/%Y %H:%M:%S')
             if eviction_time is not 0 and submission_time is not 0:
                 submission_time, eviction_time = datetime.datetime.fromtimestamp(time.mktime(submission_time)), datetime.datetime.fromtimestamp(time.mktime(eviction_time))
                 time_elapsed = eviction_time - submission_time
-                print time_elapsed, time_elapsed.total_seconds()
+                print "Evicted after: " + str(time_elapsed)
                 seconds_total = time_elapsed.total_seconds()
                 hours = (seconds_total/60.0)/60.0
                 try:
