@@ -129,10 +129,10 @@ def create_submitfiles(job_name, all, directory = directory):
         except OSError:
             print "Could not create submit file for " + filename
     else:
-        if not os.path.exists(directory + "/site_specific_outfiles/"):
+        if not os.path.exists(old_dir + "/site_specific_outfiles/"):
             try:
-                os.makedirs(directory)
-                print directory + " created."
+                os.makedirs(old_dir)
+                print old_dir + " created."
             except OSError:
                 print "Could not create " + directory
         out_dir = old_dir + "/site_specific_outfiles"
