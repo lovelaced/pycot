@@ -46,13 +46,6 @@ elif all == "2":
     all = False
     job_name = directory + "/jobs/" + job_name
 
-
-
-#print directory
-
-# current_condor = subprocess.check_output(["cat", directory + "/sites.txt"]).splitlines()
-# glideins = subprocess.check_output(["cat", directory + "/test.txt"])
-# glideins = glideins.splitlines()
 script_path = directory + "/./jobs/condorglideins.sh"
 glideins = subprocess.check_output([script_path])
 glideins = glideins.splitlines()
@@ -200,6 +193,3 @@ current_condor = set(current_condor.splitlines())
 glideins = set(glideins)
 create_submitfiles(job_name, all)
 submit_jobs(submit_list)
-# print "Waiting 1 minute to grab job stats."
-# time.sleep(60)
-# get_cpu_num(submit_list)

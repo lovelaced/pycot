@@ -6,7 +6,6 @@ import time
 import numpy as np
 import matplotlib.pyplot as plt
 
-
 def get_average(datetimes):
     print "Average time it takes for a job to be evicted: "
     total = sum(datetime.timedelta.total_seconds(dt) for dt in datetimes)
@@ -31,8 +30,15 @@ if "check_output" not in dir(subprocess):  # duck punch it in!
         return output
     subprocess.check_output = f
 
+args = sys.argv[1:]
 directory = sys.path[0]
-logfile = directory + "/outfiles/" + "log"
+
+if len(args) is 1:
+    logfile = directory + "/outfiles/" + args[0]
+else:
+    print "Usage: parse_log.py <filename>, file must be in outfiles/"
+    exit(1)
+
 cmd = ["grep", "submitted", logfile]
 joblist = subprocess.check_output(cmd).split("\n")
 job_num = 0
@@ -53,7 +59,7 @@ for job_num in job_numlist:
     for i in range(len(job_info[job_num])):
         print job_info[job_num][i]
         if "executing" in job_info[job_num][i]:
-            print job_info[job_num][i]
+            # print job_info[job_num][i]
             submission_date = job_info[job_num][i].split(" ")[2] + "/" + str(datetime.date.today().year) + " " + job_info[job_num][i].split(" ")[3]
             submission_time = time.strptime(submission_date, '%m/%d/%Y %H:%M:%S')
         elif "evicted" in job_info[job_num][i]:
@@ -63,7 +69,7 @@ for job_num in job_numlist:
             if eviction_time is not 0 and submission_time is not 0:
                 submission_time, eviction_time = datetime.datetime.fromtimestamp(time.mktime(submission_time)), datetime.datetime.fromtimestamp(time.mktime(eviction_time))
                 time_elapsed = eviction_time - submission_time
-                print "Evicted after: " + str(time_elapsed)
+                # print "Evicted after: " + str(time_elapsed)
                 seconds_total = time_elapsed.total_seconds()
                 hours = (seconds_total/60.0)/60.0
                 try:
