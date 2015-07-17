@@ -128,6 +128,13 @@ def create_submitfiles(job_name, all, directory = directory):
         except OSError:
             print "Could not create submit file for " + filename
     else:
+        if not os.path.exists(directory + "/site_specific_outfiles/"):
+            try:
+                os.makedirs(directory)
+                print directory + " created."
+            except OSError:
+                print "Could not create " + directory
+        out_dir = directory + "/site_specific_outfiles"
         for resource in glideins:
             resource = resource.split("@")
             resource_name = get_matching(resource[0])
@@ -142,6 +149,7 @@ def create_submitfiles(job_name, all, directory = directory):
                                 "universe = vanilla\n"
                                 "executable = $(job)\n"
                                 "arguments = " + job_args + "\n"
+                                "initialdir = " + out_dir + "\n"
 
                                 "log = " + resource_name + ".log\n"
 
