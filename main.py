@@ -131,11 +131,11 @@ def create_submitfiles(job_name, all, directory = directory):
     else:
         if not os.path.exists(old_dir + "/site_specific_outfiles/"):
             try:
-                os.makedirs(old_dir)
+                os.makedirs(old_dir + "/site_specific_outfiles/")
                 print old_dir + " created."
             except OSError as e:
                 print "Could not create " + old_dir + "/site_specific_outfiles\n", e
-        out_dir = old_dir + "/site_specific_outfiles"
+        out_dir = old_dir + "/site_specific_outfiles/"
         for resource in glideins:
             resource = resource.split("@")
             resource_name = get_matching(resource[0])
