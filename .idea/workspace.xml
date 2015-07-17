@@ -31,8 +31,8 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.19586506">
-              <caret line="134" column="29" selection-start-line="134" selection-start-column="29" selection-end-line="134" selection-end-column="29" />
+            <state vertical-scroll-proportion="0.17627856">
+              <caret line="133" column="36" selection-start-line="133" selection-start-column="36" selection-end-line="133" selection-end-column="36" />
               <folding>
                 <element signature="e#30#44#0" expanded="true" />
               </folding>
@@ -586,7 +586,13 @@
       <option name="project" value="LOCAL" />
       <updated>1437162863062</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="fixed directories again">
+      <created>1437163044770</created>
+      <option name="number" value="00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1437163044770</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -641,7 +647,8 @@
     <MESSAGE value="removed print statement" />
     <MESSAGE value="changed dir for site outfiles" />
     <MESSAGE value="fixed directories" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed directories" />
+    <MESSAGE value="fixed directories again" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed directories again" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -899,8 +906,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19586506">
-          <caret line="134" column="29" selection-start-line="134" selection-start-column="29" selection-end-line="134" selection-end-column="29" />
+        <state vertical-scroll-proportion="0.17627856">
+          <caret line="133" column="36" selection-start-line="133" selection-start-column="36" selection-end-line="133" selection-end-column="36" />
           <folding>
             <element signature="e#30#44#0" expanded="true" />
           </folding>

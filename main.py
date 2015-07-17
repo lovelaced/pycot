@@ -133,8 +133,8 @@ def create_submitfiles(job_name, all, directory = directory):
             try:
                 os.makedirs(old_dir)
                 print old_dir + " created."
-            except OSError:
-                print "Could not create " + directory
+            except OSError as e:
+                print "Could not create " + old_dir + "/site_specific_outfiles\n", e
         out_dir = old_dir + "/site_specific_outfiles"
         for resource in glideins:
             resource = resource.split("@")
