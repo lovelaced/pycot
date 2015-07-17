@@ -87,6 +87,7 @@ def get_matching(resource):
 
 def create_submitfiles(job_name, all, directory = directory):
     out_dir = directory + "/outfiles/"
+    old_dir = directory
     directory = directory + "/submitfiles/"
 
     if not os.path.exists(directory):
@@ -134,7 +135,7 @@ def create_submitfiles(job_name, all, directory = directory):
                 print directory + " created."
             except OSError:
                 print "Could not create " + directory
-        out_dir = directory + "/site_specific_outfiles"
+        out_dir = old_dir + "/site_specific_outfiles"
         for resource in glideins:
             resource = resource.split("@")
             resource_name = get_matching(resource[0])
