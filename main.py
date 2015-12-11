@@ -5,7 +5,7 @@ import sys
 import subprocess
 import random
 
-if "check_output" not in dir(subprocess):  # duck punch it in!
+if "check_output" not in dir(subprocess):
     def f(*popenargs, **kwargs):
         if 'stdout' in kwargs:
             raise ValueError('stdout argument not allowed, it will be overridden.')
