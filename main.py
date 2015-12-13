@@ -1,4 +1,3 @@
-__author__ = 'Erin Grasmick'
 
 import os.path
 import sys
